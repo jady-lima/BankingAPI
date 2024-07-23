@@ -1,5 +1,6 @@
 package me.dio.santander_dev_week_2023.service.impl;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.stereotype.Service;
@@ -18,16 +19,56 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public User findById(Long id) {
-        return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
     }
 
     @Override
-    public User create(User userCreate) {
+    public List<User> createAllUsers(List<User> users){
+        for (User user : users) {
+            if (userRepository.existsByAccountNumber(user.getAccount().getNumber())) {
+                throw new IllegalArgumentException("One or more account numbers already exist");
+            }            
+        }
+        return userRepository.saveAll(users);
+    }
+
+    @Override
+    public User createUser(User userCreate) {
         if(userRepository.existsByAccountNumber(userCreate.getAccount().getNumber())){
             throw new IllegalArgumentException("This Account Number already exists");
         }
         return userRepository.save(userCreate);
     }
+
+    @Override
+    public User findUserByUserId(Long id) {
+        return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
+    }
     
+    @Override
+    public User updateUser(Long id, User userUpdate) {
+        User user = findUserByUserId(id);
+
+        user.setName(userUpdate.getName());
+        user.setNews(userUpdate.getNews());
+        user.setAccount(userUpdate.getAccount());
+        user.setCard(userUpdate.getCard());
+        user.setFeatures(userUpdate.getFeatures());
+
+        return userRepository.save(user);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new NoSuchElementException("User not found");
+        }
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public List<User> findUserByName(String name) {
+        return userRepository.findByNameContainingIgnoreCase(name);
+    }
 }

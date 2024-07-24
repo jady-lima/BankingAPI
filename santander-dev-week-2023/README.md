@@ -1,43 +1,43 @@
 # API Financeira
 
 ## Diagrama de Classes (Domínio da API)
-```mermaid
-classDiagram
-  class User {
-    -String name
-    -Account account
-    -Feature[] features
-    -Card card
-    -News[] news
-  }
+  ```mermaid
+  classDiagram
+    class User {
+      -String name
+      -Account account
+      -Feature[] features
+      -Card card
+      -News[] news
+    }
 
-  class Account {
-    -String number
-    -String agency
-    -Number balance
-    -Number limit
-  }
+    class Account {
+      -String number
+      -String agency
+      -Number balance
+      -Number limit
+    }
 
-  class Feature {
-    -String icon
-    -String description
-  }
+    class Feature {
+      -String icon
+      -String description
+    }
 
-  class Card {
-    -String number
-    -Number limit
-  }
+    class Card {
+      -String number
+      -Number limit
+    }
 
-  class News {
-    -String icon
-    -String description
-  }
+    class News {
+      -String icon
+      -String description
+    }
 
-  User "1" *-- "1" Account
-  User "1" *-- "N" Feature
-  User "1" *-- "1" Card
-  User "1" *-- "N" News
-```
+    User "1" *-- "1" Account
+    User "1" *-- "N" Feature
+    User "1" *-- "1" Card
+    User "1" *-- "N" News
+  ```
 
 ## API Endpoints
 
@@ -63,7 +63,7 @@ classDiagram
   - **URL**: `/users/{id}`
   - **Description**: Retorna as informações de um usuário específico com base no ID.
 
-  #### Update User
+  #### Update User (Não implementado)
   - **Method**: PUT
   - **URL**: `/users/{id}`
   - **Description**: Atualiza as informações de um usuário específico com base no ID.
@@ -94,7 +94,7 @@ classDiagram
   - **URL**: `/accounts/{id}`
   - **Description**: Retorna as informações de uma conta específica com base no ID.
 
-  #### Update Account
+  #### Update Account (Não implementado)
   - **Method**: PUT
   - **URL**: `/accounts/{id}`
   - **Description**: Atualiza as informações de uma conta específica com base no ID.
@@ -103,20 +103,20 @@ classDiagram
 
   #### Get User Features
   - **Method**: GET
-  - **URL**: `/users/{userId}/features`
+  - **URL**: `/features/users/{userId}`
   - **Description**: Retorna todas as features associadas a um usuário.
 
-  #### Add Feature to User
+  #### Add Feature to User(Não implementado)
   - **Method**: POST
-  - **URL**: `/users/{userId}/features`
+  - **URL**: `/featuresusers/{userId}/`
   - **Description**: Adiciona uma nova feature para um usuário.
 
-  #### Delete Feature from User
+  #### Delete Feature from User (Não implementado)
   - **Method**: DELETE
-  - **URL**: `/users/{userId}/features/{featureId}`
+  - **URL**: `/features/{featureId}/users/{userId}`
   - **Description**: Remove uma feature específica de um usuário.
 
-### Card Endpoints
+### Card Endpoints (Não implementado)
 
   #### Get User Card
   - **Method**: GET
@@ -128,7 +128,7 @@ classDiagram
   - **URL**: `/users/{userId}/card`
   - **Description**: Atualiza as informações do cartão de um usuário específico.
 
-### News Endpoints
+### News Endpoints (Não implementado)
 
   #### Get User News
   - **Method**: GET

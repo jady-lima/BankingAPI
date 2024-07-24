@@ -74,7 +74,7 @@ public class UserController {
         }
     }
 
-    /*
+    
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User newUserData) {
         try {
@@ -84,7 +84,6 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
-    */
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id){

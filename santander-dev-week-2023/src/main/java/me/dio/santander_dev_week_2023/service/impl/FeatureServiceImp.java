@@ -24,27 +24,37 @@ public class FeatureServiceImp implements FeatureService{
     }
 
     @Override
+    public List<Feature> findAllFeatures() {
+        return featureRepository.findAll();
+    }
+
+    @Override
+    public Feature findFeatureById(Long featureId) {
+        return featureRepository.findById(featureId).orElseThrow(NoSuchElementException::new);
+    }
+
+    @Override
     public List<Feature> findFeaturesByUser(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(NoSuchElementException::new);
         return new ArrayList<>(user.getFeatures());
     }
 
     @Override
-    public Feature addFeatureToUser(Long userId, Feature feature) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addFeatureToUser'");
-    }
+    public User addFeatureToUser(Long userId, Feature feature) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new NoSuchElementException("User not found with id: " + userId));
 
-    @Override
-    public void deleteFeature(Long featureId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteFeature'");
-    }
+        if(userRepository.existsByIdAndFeatures_Id(userId, feature.getId())) {
+            throw new IllegalArgumentException("This Feature already exist for this user");
+        } else {
+            Feature feat = feature;
+            feat.setId(feature.getId());
+            feat.setIcon(feature.getIcon());
+            feat.setDescription(feature.getDescription());
 
-    @Override
-    public Feature findFeatureById(Long featureId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findFeatureById'");
+            user.getFeatures().add(feat);
+            userRepository.save(user);
+            return user;
+        }
     }
     
 }

@@ -101,20 +101,25 @@
 
 ### Feature Endpoints
 
+  #### Get Feature
+  - **Method**: GET
+  - **URL**: `/features`
+  - **Description**: Retorna todas as features cadastradas no sistema.
+
+  #### Get Feature
+  - **Method**: GET
+  - **URL**: `/features/{featureId}`
+  - **Description**: Retorna uma feature especifica.
+
   #### Get User Features
   - **Method**: GET
-  - **URL**: `/features/users/{userId}`
+  - **URL**: `/features/user/{userId}`
   - **Description**: Retorna todas as features associadas a um usuário.
 
-  #### Add Feature to User(Não implementado)
+  #### Add Feature to User
   - **Method**: POST
-  - **URL**: `/featuresusers/{userId}/`
+  - **URL**: `/features/user/{userId}/`
   - **Description**: Adiciona uma nova feature para um usuário.
-
-  #### Delete Feature from User (Não implementado)
-  - **Method**: DELETE
-  - **URL**: `/features/{featureId}/users/{userId}`
-  - **Description**: Remove uma feature específica de um usuário.
 
 ### Card Endpoints (Não implementado)
 

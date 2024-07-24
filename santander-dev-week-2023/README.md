@@ -94,7 +94,12 @@
   - **URL**: `/accounts/{id}`
   - **Description**: Retorna as informações de uma conta específica com base no ID.
 
-  #### Update Account (Não implementado)
+  #### Get Account by Number
+  - **Method**: GET
+  - **URL**: `/accounts/{number}`
+  - **Description**: Retorna as informações de uma conta específica com base no número da conta.
+
+  #### Update Account
   - **Method**: PUT
   - **URL**: `/accounts/{id}`
   - **Description**: Atualiza as informações de uma conta específica com base no ID.

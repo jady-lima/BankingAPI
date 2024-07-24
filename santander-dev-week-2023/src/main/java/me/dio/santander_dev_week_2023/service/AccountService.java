@@ -10,4 +10,6 @@ public interface AccountService {
     Account findByAccountId(Long id);
 
     Account updateAccount(Long id, Account accountUpdate);
+
+    Account findByAccountNumber(String accountNumber);
 }

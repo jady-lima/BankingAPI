@@ -29,6 +29,12 @@ public class AccountServiceImp implements AccountService{
     }
 
     @Override
+    public Account findByAccountNumber(String accountNumber) {
+        return accountRepository.findByNumberContainingIgnoreCase(accountNumber);
+    }
+
+
+    @Override
     public Account updateAccount(Long id, Account accountUpdate) {
         System.out.println("Account Update: " + accountUpdate);
 

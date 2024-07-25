@@ -27,5 +27,22 @@ public class NewsServiceImp implements NewsService{
         User user = userRepository.findById(userId).orElseThrow(NoSuchElementException::new);
         return new ArrayList<>(user.getNews());
     }
+
+    @Override
+    public List<News> addNewToUser(Long userId, News news) {
+        User user = userRepository.findById(userId).orElseThrow(NoSuchElementException::new);
+
+        if (userRepository.existsByIdAndNews_Id(userId, news.getId())) {
+            throw new IllegalArgumentException("This Feature already exist for this user");
+        } else {
+            user.getNews().add(news);
+            userRepository.save(user);
+            newsRepository.save(news);
+
+            return user.getNews();
+        }
+
+    }
+    
     
 }

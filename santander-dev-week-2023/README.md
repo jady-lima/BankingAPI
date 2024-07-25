@@ -142,7 +142,7 @@
 
   #### Get User News
   - **Method**: GET
-  - **URL**: `/users`
+  - **URL**: `users/{userId}/news`
   - **Description**: Retorna todas as notícias associadas a um usuário.
 
   #### Add News to User

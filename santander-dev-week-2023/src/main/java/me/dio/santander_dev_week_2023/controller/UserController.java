@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,26 +17,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import me.dio.santander_dev_week_2023.domain.model.User;
 import me.dio.santander_dev_week_2023.service.UserService;
 
 @RestController
 @RequestMapping("/users")
+@Tag(name = "User Management", description = "Operations pertaining to user in User Management System")
 public class UserController {
 
-    private final UserService userService;
-
-    public UserController(UserService userService){
-        this.userService = userService;
-    }
+    @Autowired
+    private UserService userService;
 
     @GetMapping
+    @Operation(summary = "View a list of available users")
     public ResponseEntity<List<User>> findAllUsers(){
         var users = userService.findAllUsers();
         return ResponseEntity.ok(users);
     }
 
     @GetMapping("/search")
+    @Operation(summary = "Search users by name or email")
     public ResponseEntity<List<User>> findUserByName(
         @RequestParam(value = "name", required = false, defaultValue = "") String name
     ){
@@ -49,12 +52,14 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Get a user by Id")
     public ResponseEntity<User> findUserByUserId(@PathVariable Long id){
         var user = userService.findUserByUserId(id);
         return ResponseEntity.ok(user);
     }
 
     @PostMapping
+    @Operation(summary = "Create a new user")
     public ResponseEntity<User> createUser(@RequestBody User user){
         var userCreated = userService.createUser(user);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -65,6 +70,7 @@ public class UserController {
     }
 
     @PostMapping("/createusers")
+    @Operation(summary = "Create a list of users")
     public ResponseEntity<List<User>> createAllUsers(@RequestBody List<User> users){
         try {
             List<User> createdUsers = userService.createAllUsers(users);
@@ -75,6 +81,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Update a user by Id")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User newUserData) {
         try {
             User updatedUser = userService.updateUser(id, newUserData);
@@ -85,6 +92,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Delete a user by Id")
     public ResponseEntity<String> deleteUser(@PathVariable Long id){
         try {
             userService.deleteUser(id);

@@ -4,6 +4,7 @@ import java.net.URI;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,26 +14,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import me.dio.santander_dev_week_2023.domain.model.Feature;
 import me.dio.santander_dev_week_2023.domain.model.User;
 import me.dio.santander_dev_week_2023.service.FeatureService;
 
 @RestController
 @RequestMapping("/features")
+@Tag(name = "Feature Management", description = "Operations pertaining to features in the Banking System")
 public class FeatureController {
-    private final FeatureService featureService;
 
-    public FeatureController(FeatureService featureService) {
-        this.featureService = featureService;
-    }
+    @Autowired
+    private FeatureService featureService;
 
     @GetMapping
+    @Operation(summary = "Get all features")
     public ResponseEntity<List<Feature>> findAllFeatures(){
         return ResponseEntity.ok(featureService.findAllFeatures());
     }
 
     @GetMapping("/{featureId}")
+    @Operation(summary = "Get feature details by feature ID")
     public ResponseEntity<Feature> findFeatureById(@PathVariable Long featureId){
         if (featureId == null) {
             return ResponseEntity.badRequest().build();
@@ -46,6 +50,7 @@ public class FeatureController {
     }
 
     @GetMapping("/user/{userId}")
+    @Operation(summary = "Get features by user ID")
     public ResponseEntity<List<Feature>> findFeatureByUserId(@PathVariable Long userId){
         if (userId == null) {
             return ResponseEntity.badRequest().build();
@@ -65,6 +70,7 @@ public class FeatureController {
     }
 
     @PostMapping("/user/{userId}")
+    @Operation(summary = "Add a feature to a user")
     public ResponseEntity<User> addFeatureToUser(@PathVariable Long userId, @RequestBody Feature feature) {
         if (userId == null || feature == null) {
             return ResponseEntity.badRequest().build();

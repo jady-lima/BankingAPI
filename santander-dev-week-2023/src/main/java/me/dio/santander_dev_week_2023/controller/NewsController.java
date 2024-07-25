@@ -12,17 +12,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import me.dio.santander_dev_week_2023.domain.model.News;
 import me.dio.santander_dev_week_2023.service.NewsService;
 
 @RestController
 @RequestMapping("/users")
+@Tag(name = "News Management", description = "Operations pertaining to News in the Banking System")
 public class NewsController {
 
     @Autowired
     private NewsService newsService;
 
     @GetMapping("/{userId}/news")
+    @Operation(summary = "Get news by user ID")
     public ResponseEntity<List<News>> findNewsByUserId(@PathVariable Long userId){
         if (userId == null) {
             return ResponseEntity.badRequest().build();
@@ -36,6 +40,7 @@ public class NewsController {
     }
 
     @PostMapping("/{userId}/news")
+    @Operation(summary = "Add a news to a user")
     public ResponseEntity<List<News>> addNewsToUser(@PathVariable Long userId, @RequestBody News news){
         if (userId == null || news == null) {
             return ResponseEntity.badRequest().build();

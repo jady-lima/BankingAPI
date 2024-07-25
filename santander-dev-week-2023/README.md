@@ -142,7 +142,7 @@
 
   #### Get User News
   - **Method**: GET
-  - **URL**: `/users/{userId}/news`
+  - **URL**: `users/{userId}/news`
   - **Description**: Retorna todas as notícias associadas a um usuário.
 
   #### Add News to User
@@ -150,7 +150,3 @@
   - **URL**: `/users/{userId}/news`
   - **Description**: Adiciona uma nova notícia para um usuário.
 
-  #### Delete News from User
-  - **Method**: DELETE
-  - **URL**: `/users/{userId}/news/{newsId}`
-  - **Description**: Remove uma notícia específica de um usuário.

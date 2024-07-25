@@ -199,12 +199,12 @@ http://localhost:8080/swagger-ui/
 
 1. Clone o repositório:
    ```sh
-   git clone https://github.com/jady-lima/Santander-Dev-Week.git
+   git clone https://github.com/jady-lima/BankingAPI.git
    ```
 
 2. Navegue até o diretório do projeto:
    ```sh
-   cd Santander-Dev-Week
+   cd banking_api
    ```
 
 3. Compile e execute o projeto usando Gradle:

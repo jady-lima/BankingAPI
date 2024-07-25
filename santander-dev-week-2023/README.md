@@ -63,7 +63,7 @@
   - **URL**: `/users/{id}`
   - **Description**: Retorna as informações de um usuário específico com base no ID.
 
-  #### Update User (Não implementado)
+  #### Update User 
   - **Method**: PUT
   - **URL**: `/users/{id}`
   - **Description**: Atualiza as informações de um usuário específico com base no ID.
@@ -84,9 +84,9 @@
   - **URL**: `/accounts`
   - **Description**: Retorna uma lista de todas as contas.
 
-  #### Get Account by User ID
+  #### Get Account by User ID (Não implementado)
   - **Method**: GET
-  - **URL**: `/accounts/users/{userId}`
+  - **URL**: `/accounts/user/{userId}`
   - **Description**: Retorna as informações da conta associada a um usuário específico.
 
   #### Get Account by Account ID
@@ -95,8 +95,8 @@
   - **Description**: Retorna as informações de uma conta específica com base no ID.
 
   #### Get Account by Number
-  - **Method**: GET
-  - **URL**: `/accounts/{number}`
+  - **Method**: POST
+  - **URL**: `/accounts`
   - **Description**: Retorna as informações de uma conta específica com base no número da conta.
 
   #### Update Account
@@ -106,7 +106,7 @@
 
 ### Feature Endpoints
 
-  #### Get Feature
+  #### Get Features
   - **Method**: GET
   - **URL**: `/features`
   - **Description**: Retorna todas as features cadastradas no sistema.
@@ -126,7 +126,7 @@
   - **URL**: `/features/user/{userId}/`
   - **Description**: Adiciona uma nova feature para um usuário.
 
-### Card Endpoints (Não implementado)
+### Card Endpoints
 
   #### Get User Card
   - **Method**: GET

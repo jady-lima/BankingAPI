@@ -27,6 +27,14 @@ public class CardServiceImp implements CardService{
         return user.getCard();
     }
 
-    
+    @Override
+    public Card updateCard(Long userId, Card card) {
+        User user = userRepository.findById(userId).orElseThrow(NoSuchElementException::new);
+
+        user.setCard(card);
+        userRepository.save(user);
+
+        return cardRepository.save(user.getCard());
+    }
     
 }

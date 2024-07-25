@@ -1,5 +1,7 @@
 package me.dio.santander_dev_week_2023.controller;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import me.dio.santander_dev_week_2023.domain.model.Card;
-import me.dio.santander_dev_week_2023.domain.model.User;
 import me.dio.santander_dev_week_2023.service.CardService;
 
 @RestController
@@ -35,4 +36,12 @@ public class CardController {
         }
     }
 
+    @PutMapping("/{userId}/card")
+    public ResponseEntity<Card> updateCard(@PathVariable Long userId, @RequestBody Card card){
+        try {
+            return ResponseEntity.ok(cardService.updateCard(userId, card));
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

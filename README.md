@@ -121,11 +121,6 @@ classDiagram
   - **URL**: `/accounts`
   - **Descrição**: Retorna uma lista de todas as contas.
 
-- **Get Account by User ID** (Não implementado)
-  - **Método**: `GET`
-  - **URL**: `/accounts/user/{userId}`
-  - **Descrição**: Retorna as informações da conta associada a um usuário específico.
-
 - **Get Account by Account ID**
   - **Método**: `GET`
   - **URL**: `/accounts/{id}`
@@ -175,7 +170,7 @@ classDiagram
   - **URL**: `/users/{userId}/card`
   - **Descrição**: Atualiza as informações do cartão de um usuário específico.
 
-### 📰 News Endpoints (Não implementado)
+### 📰 News Endpoints
 
 - **Get User News**
   - **Método**: `GET`
